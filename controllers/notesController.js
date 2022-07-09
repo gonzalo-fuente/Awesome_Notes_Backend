@@ -30,15 +30,15 @@ const createNewNote = async (req, res) => {
 };
 
 const updateNote = async (req, res) => {
-  if (!req?.body?.id) {
+  if (!req?.body?._id) {
     return res.status(400).json({ "message": "ID parameter is required." });
   }
 
-  const note = await Note.findOne({ _id: req.body.id }).exec();
+  const note = await Note.findOne({ _id: req.body._id }).exec();
   if (!note) {
     return res
       .status(204)
-      .json({ "message": `No note matches ID ${req.body.id}.` });
+      .json({ "message": `No note matches ID ${req.body._id}.` });
   }
   if (req.body?.title) note.title = req.body.title;
   if (req.body?.content) note.content = req.body.content;
@@ -51,14 +51,14 @@ const updateNote = async (req, res) => {
 };
 
 const deleteNote = async (req, res) => {
-  if (!req?.body?.id)
+  if (!req?.body?._id)
     return res.status(400).json({ "message": "Note ID required." });
 
-  const note = await Note.findOne({ _id: req.body.id }).exec();
+  const note = await Note.findOne({ _id: req.body._id }).exec();
   if (!note) {
     return res
       .status(204)
-      .json({ "message": `No note matches ID ${req.body.id}.` });
+      .json({ "message": `No note matches ID ${req.body._id}.` });
   }
   const result = await note.deleteOne(); //{ _id: req.body.id }
   res.json(result);
