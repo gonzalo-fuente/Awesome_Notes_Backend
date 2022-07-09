@@ -40,12 +40,12 @@ const updateNote = async (req, res) => {
       .status(204)
       .json({ "message": `No note matches ID ${req.body._id}.` });
   }
-  if (req.body?.title) note.title = req.body.title;
-  if (req.body?.content) note.content = req.body.content;
-  if (req.body?.editedAt) note.editedAt = req.body.editedAt;
-  if (req.body?.archived) note.archived = req.body.archived;
-  if (req.body?.categories) note.categories = req.body.categories;
-  if (req.body?.color) note.color = req.body.color;
+  note.title = req.body.title;
+  note.content = req.body.content;
+  note.editedAt = req.body.editedAt;
+  note.archived = req.body.archived;
+  note.categories = req.body.categories;
+  note.color = req.body.color;
   const result = await note.save();
   res.json(result);
 };
