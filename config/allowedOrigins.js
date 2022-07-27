@@ -1,5 +1,6 @@
 const allowedOrigins = [
   "https://awesome-notes-react.netlify.app/",
+  "https://amdb-the-clone.netlify.app/",
   "http://localhost:3500",
   "http://localhost:3000",
 ];
